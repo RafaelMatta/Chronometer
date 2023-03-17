@@ -3,6 +3,49 @@
     <head>
         <meta charset="utf-8">
         <title>Chronometer</title>
-        <link rel="stylesheet" href="style/css/style.css"
+        <link rel="stylesheet" href="style/css/style.css">
     </head>
+    <body>
+        <div class="chronometer">
+            <div class="chronometer__clock">
+                <img class="chronometer__ticks" src="assets/ticks.svg" alt="ticks">
+                <div class="chronometer__pointer"></div>
+            </div>
+            
+            <div class="chronometer__timer"></div>
+            <div class="chronometer__laptimer">
+                <div class="chronometer__lap">
+                    <svg class="chronometer__icon">
+                        <use xlink:href="assets/icons/icons.svg#flag">
+                    </svg>
+                    <div class="chronometer__position">1</div>
+                    <div class="chronometer__score">00:00:00</div>
+                    <div class="chronometer__time">00:00:00</div>
+                </div>
+            </div>
+            <div class="chronometer__control">
+                <div class="chronometer__button">
+                    <button class="button button--start">
+                        <svg class="button__icon">
+                            <use xlink:href="assets/icons/icons.svg#play"/>
+                        </svg>
+                    <button class="button button--pause">
+                        <svg class="button__icon">
+                            <use xlink:href="assets/icons/icons.svg#pause"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="chronometer__button">
+                    <button class="button button--lap">
+                        <svg class="button__icon">
+                            <use xlink:href="assets/icons/icons.svg#flag"/>
+                        </svg>
+                    <button class="button button--stop">
+                        <svg class="button__icon">
+                            <use xlink:href="assets/icons/icons.svg#stop"/>
+                        </svg>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>

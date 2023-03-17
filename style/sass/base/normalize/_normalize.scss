@@ -1,0 +1,15 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  box-sizing: inherit;
+  font-size: 62.5%;
+  color: $color-white;
+}
+
+body {
+  background-color: $color-dark-blue;
+}
