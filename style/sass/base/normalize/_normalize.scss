@@ -1,0 +1,18 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  box-sizing: inherit;
+  font-size: 62.5%;
+  font-family: "inter", sans-serif;
+  color: $color-white;
+}
+
+body {
+  background-color: $color-dark-blue;
+}
