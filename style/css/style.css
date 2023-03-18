@@ -1,12 +1,104 @@
+@keyframes spin360 {
+  0% {
+    rotate: 0; }
+  100% {
+    rotate: 360deg; } }
+
 *,
 *::before,
 *::after {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box; }
 
 html {
   box-sizing: inherit;
   font-size: 62.5%;
+  font-family: "inter", sans-serif;
   color: #FFF; }
 
 body {
   background-color: #0D1224; }
+
+.button {
+  background-color: #FFD439;
+  padding: 2.5rem;
+  border-radius: 100px;
+  border: none;
+  outline: none;
+  cursor: pointer; }
+  .button__icon {
+    height: 5rem;
+    width: 5rem; }
+  .button--start, .button--lap {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.5s ease; }
+
+.chronometer {
+  position: relative;
+  margin: 0 auto;
+  height: 100svh;
+  max-width: 180rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  overflow: hidden; }
+  .chronometer__clock {
+    position: absolute;
+    top: 50%;
+    left: -30%;
+    transform: translate(-50%, -50%);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 3rem; }
+  .chronometer__ticks {
+    height: 200%;
+    width: 100%; }
+    .chronometer__ticks--spin {
+      animation: spin360 60s linear infinite; }
+  .chronometer__pointer {
+    position: absolute;
+    top: 50%;
+    left: 105%;
+    height: 3%;
+    width: 6%;
+    transform: translate(-50%, -50%); }
+  .chronometer__panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10rem;
+    margin-right: 23%; }
+  .chronometer__timer {
+    font-size: 11rem; }
+  .chronometer__laptimer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    overflow: scroll;
+    height: 25rem; }
+  .chronometer__laptimer::-webkit-scrollbar {
+    display: none; }
+  .chronometer__lap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 2.1rem; }
+  .chronometer__place {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem; }
+  .chronometer__icon {
+    fill: #FFF;
+    height: 1.7rem;
+    width: 1.7rem; }
+  .chronometer__control {
+    position: relative;
+    width: 100%;
+    margin-top: 5.15rem; }

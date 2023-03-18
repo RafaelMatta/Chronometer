@@ -1,0 +1,103 @@
+.chronometer {
+  position: relative;
+
+  margin: 0 auto;
+  height: 100svh;
+  max-width: 180rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  overflow: hidden;
+
+  &__clock {
+    position: absolute;
+    top: 50%;
+    left: -30%;
+    transform: translate(-50%, -50%);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  &__ticks {
+    height: 200%;
+    width: 100%;
+
+    &--spin {
+      animation: spin360 60s linear infinite;
+    }
+  }
+
+  &__pointer {
+    position: absolute;
+    top: 50%;
+    left: 105%;
+    height: 3%;
+    width: 6%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10rem;
+    margin-right: 23%;
+  }
+
+  &__timer {
+    font-size: 11rem;
+  }
+
+  &__laptimer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    overflow: scroll;
+    height: 25rem;
+  }
+
+  &__laptimer::-webkit-scrollbar {
+    display: none;
+  }
+
+  &__lap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 2.1rem;
+  }
+
+  &__place {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  &__icon {
+    fill: $color-white;
+    height: 1.7rem;
+    width: 1.7rem;
+  }
+
+  &__control {
+    position: relative;
+    width: 100%;
+    margin-top: 5.15rem;
+
+    // &:hover > .button--lap {
+    //   left: 0;
+    //   transform: translate(0, -50%);
+    // }
+
+    // &:hover > .button--start {
+    //   left: 100%;
+    //   transform: translate(-100%, -50%);
+    // }
+  }
+}

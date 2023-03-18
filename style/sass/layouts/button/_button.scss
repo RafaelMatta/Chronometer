@@ -1,0 +1,21 @@
+.button {
+  background-color: $color-yellow;
+  padding: 2.5rem;
+  border-radius: 100px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+
+  &__icon {
+    height: 5rem;
+    width: 5rem;
+  }
+
+  &--start,
+  &--lap {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.5s ease;
+  }
+}
