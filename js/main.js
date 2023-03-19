@@ -6,24 +6,52 @@ const labelPosition = document.getElementById("position");
 const btnPlayPause = document.getElementById("play");
 const btnLapStop = document.getElementById("lap");
 
+let timer;
+let laps = [];
+
+const startTimer = function () {
+    let time = 0
+
+    const tick = function () {
+        const miliseconds = `${time % 100}`.padStart(2, 0);
+        const seconds = `${Math.trunc(time / 100 % 60)}`.padStart(2, 0);
+        const minutes = `${Math.trunc(time / 100 / 60 % 60)}`.padStart(2, 0); 
+        const hours = `${Math.trunc(time / 100 / 60 / 60)}`.padStart(2, 0); 
+
+        labelTimer.innerText = `${hours}:${minutes}:${seconds}.${miliseconds}`;
+        time++
+    }
+
+    tick();
+    timer = setInterval(tick, 10);
+}
+
+const stopTimer = function () {
+    btnLapStop.style = `
+    left: 50%;
+    transform: translate(-50%, -50%);`
+    
+    btnPlayPause.style = `
+    left: 50%;
+    transform: translate(-50%, -50%);`
+    
+    resetTimer();
+}
+
+const resetTimer = function () {
+    if (timer) {
+        clearInterval(timer);
+        timer = null;
+        labelTimer.innerText = '00:00.00'
+    }
+}
+
 const changeIcon = function (btn, icon) {
     btn.innerHTML = `
         <svg class="button__icon">
             <use xlink:href="assets/icons/icons.svg#${icon}"/>
         </svg>
     `
-}
-
-const stopTimer = function () {
-    btnLapStop.style = `
-        left: 50%;
-        transform: translate(-50%, -50%);`
-
-    btnPlayPause.style = `
-        left: 50%;
-        transform: translate(-50%, -50%);`
-
-    resetTimer();
 }
 
 const changeToPause = function (){
@@ -41,6 +69,8 @@ const changeToPlay = function (){
         btnPlayPause.style = `
             left: 100%;
             transform: translate(-100%, -50%);`
+
+        startTimer();
     }
 
     changeIcon(btnPlayPause, "pause");
