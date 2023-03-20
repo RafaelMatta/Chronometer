@@ -90,11 +90,11 @@ const stopTimer = function () {
 
 const resetTimer = function () {
     if (globalTimer) {
+        clearInterval(globalTimer);
         globalTimer = null;
         labelTimer.innerText = '00:00.00';
         laps = [];
         time = 0;
-        clearInterval(globalTimer);
         resetLapTimer();
     }
 }
