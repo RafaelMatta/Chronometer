@@ -5,6 +5,7 @@
   height: 100svh;
   max-width: 180rem;
   width: 100%;
+
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -16,11 +17,21 @@
     top: 50%;
     left: -30%;
     transform: translate(-50%, -50%);
+
     height: 100%;
     width: 100%;
+
     display: flex;
     align-items: center;
     gap: 3rem;
+
+    @media screen and (max-width: $bp-medium) {
+      top: -30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      flex-direction: column;
+      min-width: 100rem;
+    }
   }
 
   &__ticks {
@@ -28,7 +39,7 @@
     width: 100%;
 
     &--spin {
-      animation: spin360 60s linear infinite;
+      animation: spin360 59s linear 1s infinite;
     }
   }
 
@@ -36,9 +47,17 @@
     position: absolute;
     top: 50%;
     left: 105%;
-    height: 3%;
-    width: 6%;
+    height: 2%;
     transform: translate(-50%, -50%);
+
+    @media screen and (max-width: $bp-medium) {
+      position: relative;
+      top: 0;
+      left: 0;
+      transform: translate(0, 0);
+      rotate: 90deg;
+      height: 4%;
+    }
   }
 
   &__panel {
@@ -48,6 +67,11 @@
     gap: 6rem;
     width: 100%;
     max-width: 45rem;
+
+    @media screen and (max-width: $bp-small) {
+      gap: 4rem;
+      padding: 0 1.5rem;
+    }
   }
 
   &__hr {
@@ -57,6 +81,12 @@
 
   &__timer {
     font-size: 8rem;
+    @media screen and (max-width: $bp-medium) {
+      font-size: 6rem;
+    }
+    @media screen and (max-width: $bp-small) {
+      font-size: 5rem;
+    }
   }
 
   &__laptimer {
@@ -77,6 +107,10 @@
     align-items: center;
     justify-content: space-between;
     font-size: 2.1rem;
+
+    @media screen and (max-width: $bp-small) {
+      font-size: 1.8rem;
+    }
   }
 
   &__place {
@@ -95,11 +129,6 @@
     position: relative;
     width: 100%;
     max-width: 30rem;
-    margin-top: 5.15rem;
-
-    // &:hover > .button--start {
-    //   left: 100%;
-    //   transform: translate(-100%, -50%);
-    // }
+    margin: 4.15rem 0;
   }
 }

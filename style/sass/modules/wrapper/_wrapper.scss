@@ -3,5 +3,10 @@
     display: flex;
     justify-content: center;
     width: 70%;
+
+    @media screen and (max-width: $bp-medium) {
+      padding-top: 20rem;
+      width: 100%;
+    }
   }
 }
