@@ -1,36 +1,73 @@
 const labelTimer = document.getElementById("timer");
-const labelTime = document.getElementById("time");
-const labelScore = document.getElementById("score");
-const labelPosition = document.getElementById("position");
-
+const divLaps = document.querySelector(".chronometer__laptimer")
+const divTicks = document.getElementById("ticks")
 const btnPlayPause = document.getElementById("play");
 const btnLapStop = document.getElementById("lap");
 
-let globalTimer, lapTimer, lapScore;
+let globalTimer, lapTimer;
+let globalTimerTemplate, lapTimerTemplate;
+let time = 0, lapTime = 0;
 let isTimePaused = false;
 let laps = [];
 
+const addLap = function () {
+    laps.push({ 
+        score: lapTimerTemplate, 
+        time: globalTimerTemplate
+    });
+    resetLapTimer();
+    startLapTimer();
+}
+
+const resetLapTimer = function () {
+    clearInterval(lapTimer);
+    lapTime = 0;
+    updateLaps();
+}
+
+const updateLaps = function () {
+    divLaps.innerHTML = '';
+    laps.forEach((lap, index) => {
+        divLaps.innerHTML += `
+        <div class="chronometer__lap">
+            <div class="chronometer__place">
+                <svg class="chronometer__icon">
+                    <use xlink:href="assets/icons/icons.svg#flag">
+                </svg>
+                <p class="chronometer__position" id="position">${`${index + 1}`.padStart(2,0)}</p>
+            </div>
+            <p class="chronometer__score" id="score">${lap.score}</p>
+            <p class="chronometer__time" id="time">${lap.time}</p>
+        </div>
+        `
+    });
+}
+
+const tick = function (time) {
+    const miliseconds = `${time % 100}`.padStart(2, 0);
+    const seconds = `${Math.trunc(time / 100 % 60)}`.padStart(2, 0);
+    const minutes = `${Math.trunc(time / 100 / 60 % 60)}`.padStart(2, 0); 
+    const hours = `${Math.trunc(time / 100 / 60 / 60)}`.padStart(2, 0);
+    
+    return `${hours}:${minutes}:${seconds}.${miliseconds}`;
+}
 
 const startTimer = function () {
-    let time = 0, lapTime = 0;
+    startGlobalTimer();
+    startLapTimer();
+}
 
-    const tick = function () {
-        const miliseconds = `${time % 100}`.padStart(2, 0);
-        const seconds = `${Math.trunc(time / 100 % 60)}`.padStart(2, 0);
-        const minutes = `${Math.trunc(time / 100 / 60 % 60)}`.padStart(2, 0); 
-        const hours = `${Math.trunc(time / 100 / 60 / 60)}`.padStart(2, 0);
-        
-        return `${hours}:${minutes}:${seconds}.${miliseconds}`;
-    }
-    
+const startGlobalTimer = function () {
     globalTimer = setInterval(() => {
-        labelTimer.innerText = tick();
         if (!isTimePaused) time++;
+        globalTimerTemplate = labelTimer.innerText = tick(time);
     }, 10);
-    
+}
+
+const startLapTimer = function () {
     lapTimer = setInterval(() => {
-        lapScore = `+ ${tick()}`;
         if (!isTimePaused) lapTime++;
+        lapTimerTemplate = `+ ${tick(lapTime)}`;
     }, 10);
 }
 
@@ -48,15 +85,17 @@ const stopTimer = function () {
     transform: translate(-50%, -50%);`
 
     resetTimer();
+    divTicks.classList.toggle("chronometer__ticks--spin");
 }
 
 const resetTimer = function () {
     if (globalTimer) {
-        clearInterval(globalTimer);
-        clearInterval(lapTimer);
         globalTimer = null;
-        labelTimer.innerText = '00:00.00'
+        labelTimer.innerText = '00:00.00';
         laps = [];
+        time = 0;
+        clearInterval(globalTimer);
+        resetLapTimer();
     }
 }
 
@@ -72,6 +111,7 @@ const changeToPause = function (){
     changeIcon(btnPlayPause, "play");
     pauseTimer();
     changeToStop();
+    divTicks.style.animationPlayState = 'paused';
 
     btnPlayPause.setAttribute('onclick', 'changeToPlay()');
 }
@@ -85,8 +125,11 @@ const changeToPlay = function (){
             left: 100%;
             transform: translate(-100%, -50%);`
 
+        divTicks.classList.toggle("chronometer__ticks--spin");
         startTimer();
     }
+
+    divTicks.style.animationPlayState = 'running';
 
     changeIcon(btnPlayPause, "pause");
     pauseTimer();

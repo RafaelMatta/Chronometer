@@ -8,7 +8,7 @@
     <body>
         <div class="chronometer">
             <div class="chronometer__clock">
-                <svg class="chronometer__ticks chronometer__ticks--spin">
+                <svg class="chronometer__ticks" id="ticks">
                     <use xlink:href="assets/clock.svg#ticks"/>
                 </svg>
                 <svg class="chronometer__pointer">
@@ -19,18 +19,7 @@
             <div class="wrapper wrapper--panel">
                 <div class="chronometer__panel">
                     <p class="chronometer__timer" id="timer">00:00.00</p>
-                    <div class="chronometer__laptimer">
-                        <div class="chronometer__lap">
-                            <div class="chronometer__place">
-                                <svg class="chronometer__icon">
-                                    <use xlink:href="assets/icons/icons.svg#flag">
-                                </svg>
-                                <p class="chronometer__position" id="position">01</p>
-                            </div>
-                            <p class="chronometer__score" id="score">+ 00:00.00</p>
-                            <p class="chronometer__time" id="time">00:00.00</p>
-                        </div>
-                    </div>
+                    <div class="chronometer__laptimer"></div>
                     <div class="chronometer__control">
                         <button class="button button--lap" id="lap">
                             <svg class="button__icon">
