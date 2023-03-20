@@ -1,14 +1,14 @@
 .button {
   background-color: $color-yellow;
-  padding: 2.5rem;
+  padding: 2rem;
   border-radius: 100px;
   border: none;
   outline: none;
   cursor: pointer;
 
   &__icon {
-    height: 5rem;
-    width: 5rem;
+    height: 4rem;
+    width: 4rem;
   }
 
   &--start,
