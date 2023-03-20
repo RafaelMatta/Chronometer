@@ -78,6 +78,7 @@ const pauseTimer = function () {
 const stopTimer = function () {
     btnLapStop.style = `
     left: 50%;
+    opacity: 0;
     transform: translate(-50%, -50%);`
     
     btnPlayPause.style = `
@@ -90,11 +91,11 @@ const stopTimer = function () {
 
 const resetTimer = function () {
     if (globalTimer) {
+        clearInterval(globalTimer);
         globalTimer = null;
-        labelTimer.innerText = '00:00.00';
+        labelTimer.innerText = '00:00:00.00';
         laps = [];
         time = 0;
-        clearInterval(globalTimer);
         resetLapTimer();
     }
 }
@@ -120,6 +121,7 @@ const changeToPlay = function (){
     if (!globalTimer){
         btnLapStop.style = `
             left: 0;
+            opacity: 1;
             transform: translate(0, -50%);`
         btnPlayPause.style = `
             left: 100%;
